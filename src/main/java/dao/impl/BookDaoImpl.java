@@ -10,6 +10,7 @@ import java.util.List;
 
 public class BookDaoImpl implements BookDao {
 
+
     private EntityManager manager;
 
     public BookDaoImpl() {

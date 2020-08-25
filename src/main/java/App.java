@@ -4,6 +4,7 @@ import dao.impl.BookDaoImpl;
 import entity.Author;
 import entity.Book;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.orm.jpa.JpaTransactionManager;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,12 +19,16 @@ public class App {
         BookDaoImpl bookDao = (BookDaoImpl) context.getBean("bookDao");
 
        /* EntityManagerFactory factory = Persistence.createEntityManagerFactory("prodUnit");*/
+
         EntityManagerFactory factory = (EntityManagerFactory) context.getBean("myEmf");
         EntityManager manager = factory.createEntityManager();
 
         bookDao.setManager(manager);
 
         bookDao.getAllBooks().forEach(System.out::println);
+
+        JpaTransactionManager transactionManager = (JpaTransactionManager) context.getBean("transactionManager");
+
 
         context.close();
     }

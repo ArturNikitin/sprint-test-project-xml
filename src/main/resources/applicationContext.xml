@@ -7,12 +7,12 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
+<!--    <context:component-scan base-package="java" />-->
 
     <bean id="userBean"
           class="contexttest.User">
         <constructor-arg value="Artur"/>
     </bean>
-
 
     <bean id="myEmf"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -25,6 +25,7 @@
             <props>
                 <prop key="hibernate.hbm2ddl.auto">validate</prop>
                 <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
             </props>
         </property>
     </bean>
@@ -34,15 +35,18 @@
         <property name="driverClassName" value="org.postgresql.Driver" />
         <property name="url" value="jdbc:postgresql://127.0.0.1:5432/library" />
         <property name="username" value="postgres" />
-        <property name="password" value="root" />
+        <property name="password" value="1488" />
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="myEmf" />
     </bean>
 
+
     <bean id="bookDao"
           class="dao.impl.BookDaoImpl">
     </bean>
+
+
 
 </beans>
